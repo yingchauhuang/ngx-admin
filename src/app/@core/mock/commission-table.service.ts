@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { commissionTableData } from '../data/commission-table';
+import { commission } from "../data/commission.interface"
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class commissionTableService extends commissionTableData {
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private commissionesUrl = 'api/commissiones';  // URL to web api
 
   constructor(
     private http: HttpClient,) {
@@ -14,25 +15,25 @@ export class commissionTableService extends commissionTableData {
   }
 
   /** GET heroes from the server */
-  getData (): Observable<any[]> {
-    return this.http.get<any[]>(this.heroesUrl)
+  getData (): Observable<commission[]> {
+    return this.http.get<commission[]>(this.commissionesUrl)
       .pipe(
         tap(_ => this.log('fetched commissions')),
         catchError(this.handleError('getcommissions', []))
       );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
-    return this.http.get<any[]>(url)
+  /** GET commission by id. Return `undefined` when id not found */
+  getcommissionNo404<Data>(id: number): Observable<commission> {
+    const url = `${this.commissionesUrl}/?id=${id}`;
+    return this.http.get<commission[]>(url)
       .pipe(
-        map(heroes => heroes[0]), // returns a {0|1} element array
+        map(commissiones => commissiones[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} commission id=${id}`);
         }),
-        catchError(this.handleError<any>(`getHero id=${id}`))
+        catchError(this.handleError<commission>(`getcommission id=${id}`))
       );
     }
 
@@ -43,23 +44,23 @@ export class commissionTableService extends commissionTableData {
    * @param result - optional value to return as the observable result
    */
    private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (error: commission): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.TradeID}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a commissionService message with the MessageService */
   private log(message: string) {
-    console.log(`HeroService: ${message}`);
-    // this.messageService.add(`HeroService: ${message}`);
+    console.log(`commissionService: ${message}`);
+    // this.messageService.add(`commissionService: ${message}`);
   }  
   // getData() {
   //   return JSON.parse(` [

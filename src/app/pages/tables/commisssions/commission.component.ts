@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { commissionTableData } from '../../../@core/data/commission-table';
-
+import { commission } from '../../../@core/data/commission.interface';
 @Component({
   selector: 'unicorn-commission',
   templateUrl: './commission.component.html',
   styleUrls: ['./commission.component.scss'],
 })
 export class CommissionComponent {
-
+  commissions : commission[];
   settings = {
     actions: {  add:false, edit:false, delete:false,},
     columns: {
@@ -52,9 +52,11 @@ export class CommissionComponent {
     this.source.load(data);
   }
 
-
-  search(searchTerm: string) {
-
+  getCommissions(): void {
+    this.service.getData()
+    .subscribe( commissions => this.commissions = commissions);
   }
+
+
 
 }

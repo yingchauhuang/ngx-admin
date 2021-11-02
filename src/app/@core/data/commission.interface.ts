@@ -1,0 +1,47 @@
+export interface commission {
+  AccountId: string;
+  acctAlias: string;
+  currency: string;
+  Symbol: string;
+  Multiplier: number;
+  Expiry?: Date;
+  Put_Call?: string;
+  Date_Time?: Date;
+  Buy_Sell?: string;
+  Quantity?: number;
+  Price?: number;
+  TradeID?: string;
+  TotalCommission?: number;
+  Revenue?: number;
+  Expense?: number;
+  Net?: number;
+  RevenueInBase?: number;
+  ExpenseInBase?: number;
+  NetInBase?: number;
+  id?: number;
+  name?: string;
+};
+
+export class commissionDTO {
+  AccountId: string;
+  acctAlias: string;
+  currency: string;
+  Symbol: string;
+  Multiplier: number;
+  Expiry?: Date;
+  Put_Call?: string;
+  Date_Time?: Date;
+  Buy_Sell?: string;
+  Quantity?: number;
+  Price?: number;
+  TradeID?: string;
+  TotalCommission?: number;
+  Revenue?: number;
+  Expense?: number;
+  Net?: number;
+  RevenueInBase?: number;
+  ExpenseInBase?: number;
+  NetInBase?: number;
+  id?: number;
+  name?: string;
+};
