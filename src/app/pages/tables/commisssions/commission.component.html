@@ -1,0 +1,20 @@
+<nb-card>
+    <nb-card-header>
+      Commission Table
+    </nb-card-header>
+  
+    <nb-card-body>
+      <div class="search">
+        <label for="commission-name">Commission AccountId: </label>
+        <input type="text" #commissionAccountId id="commissionAccountId">
+      
+        <button (click)="search(commissionAccountId.value)">
+          Search
+        </button>
+      </div>
+  
+      <ng2-smart-table [settings]="settings" [source]="source">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  
