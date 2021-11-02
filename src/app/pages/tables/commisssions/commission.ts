@@ -1,5 +1,5 @@
 
-export abstract class commissionsData {
+export abstract class commissionData {
     abstract getData(): any[];
   }
   

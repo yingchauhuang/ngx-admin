@@ -3,11 +3,11 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { commissionTableData } from '../../../@core/data/commission-table';
 
 @Component({
-  selector: 'unicorn-commissions',
-  templateUrl: './commissions.component.html',
-  styleUrls: ['./commissions.component.scss'],
+  selector: 'unicorn-commission',
+  templateUrl: './commission.component.html',
+  styleUrls: ['./commission.component.scss'],
 })
-export class CommissionsComponent {
+export class CommissionComponent {
 
   settings = {
     actions: {  add:false, edit:false, delete:false,},
@@ -48,6 +48,7 @@ export class CommissionsComponent {
 
   constructor(private service: commissionTableData) {
     const data = this.service.getData();
+    console.log(data);
     this.source.load(data);
   }
 
