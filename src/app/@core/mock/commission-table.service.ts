@@ -6,17 +6,22 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class commissionTableService extends commissionTableData {
-  private commissionesUrl = 'api/commissiones';  // URL to web api
+export class commissionTableService  {
+  private commissionesUrl = 'http://127.0.0.1:3000/api/query/commission?';  // URL to web api
 
   constructor(
     private http: HttpClient,) {
-    super();
   }
 
   /** GET heroes from the server */
-  getData (): Observable<commission[]> {
-    return this.http.get<commission[]>(this.commissionesUrl)
+  getData (tRA: string,
+    beginDate: string,
+    endDate: string): Observable<commission[]> {
+    var url = new URL(this.commissionesUrl);
+    url.searchParams.set('tRA',tRA);
+    url.searchParams.set('beginDate',beginDate);
+    url.searchParams.set('endDate',endDate);
+    return this.http.get<commission[]>(url.href)
       .pipe(
         tap(_ => this.log('fetched commissions')),
         catchError(this.handleError('getcommissions', []))
