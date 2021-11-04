@@ -5,10 +5,13 @@
   
     <nb-card-body>
       <div class="search">
-        <label for="commission-name">Commission AccountId: </label>
-        <input type="text" #commissionAccountId id="commissionAccountId">
-      
-        <button (click)="search(commissionAccountId.value)">
+        <label for="tRA">RA Name or ID: </label>
+        <input type="text" #tRA id="tRA">
+        <label for="beginDate">Begin Date: </label>
+        <input type="text" #beginDate id="beginDate">
+        <label for="endDate">End Date: </label>
+        <input type="text" #endDate id="endDate">
+        <button (click)="getCommissions(tRA.value,beginDate.value,endDate.value)">
           Search
         </button>
       </div>

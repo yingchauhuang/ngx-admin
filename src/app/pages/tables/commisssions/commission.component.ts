@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { commissionTableData } from '../../../@core/data/commission-table';
+import { commissionTableService } from '../../../@core/mock/commission-table.service';
 import { commission } from '../../../@core/data/commission.interface';
 @Component({
-  selector: 'unicorn-commission',
+  selector: 'ngx-commission',
   templateUrl: './commission.component.html',
   styleUrls: ['./commission.component.scss'],
 })
 export class CommissionComponent {
-  commissions : commission[];
+  commissions: commission[];
   settings = {
-    actions: {  add:false, edit:false, delete:false,},
+    actions: { add: false, edit: false, delete: false, },
+    hideSubHeader: true,
     columns: {
       currency: {
         title: '幣別',
@@ -46,15 +47,18 @@ export class CommissionComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: commissionTableData) {
-    const data = this.service.getData();
-    console.log(data);
-    this.source.load(data);
+  constructor(private service: commissionTableService) {
   }
 
-  getCommissions(): void {
-    this.service.getData()
-    .subscribe( commissions => this.commissions = commissions);
+  getCommissions(tRA: string,
+    beginDate: string,
+    endDate: string): void {
+    this.service.getData(tRA,beginDate,endDate)
+    .subscribe( commissions => { 
+      // this.commissions= commissions;
+      // console.log(this.commissions);
+      // console.log(this.commissions[0]);
+      this.source.load(commissions);});
   }
 
 

@@ -15,7 +15,6 @@ import {
 import { UserData } from './data/users';
 import { ElectricityData } from './data/electricity';
 import { SmartTableData } from './data/smart-table';
-import { commissionTableData } from './data/commission-table';
 import { UserActivityData } from './data/user-activity';
 import { OrdersChartData } from './data/orders-chart';
 import { ProfitChartData } from './data/profit-chart';
@@ -77,7 +76,7 @@ const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
   { provide: ElectricityData, useClass: ElectricityService },
   { provide: SmartTableData, useClass: SmartTableService },
-  { provide: commissionTableData, useClass: commissionTableService },
+  { provide: commissionTableService, useClass: commissionTableService },
   { provide: UserActivityData, useClass: UserActivityService },
   { provide: OrdersChartData, useClass: OrdersChartService },
   { provide: ProfitChartData, useClass: ProfitChartService },
