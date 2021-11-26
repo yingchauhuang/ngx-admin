@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { commissionTableService } from '../../../@core/mock/commission-table.service';
 import { commission } from '../../../@core/data/commission.interface';
+
 @Component({
   selector: 'ngx-commission',
   templateUrl: './commission.component.html',
@@ -9,6 +10,8 @@ import { commission } from '../../../@core/data/commission.interface';
 })
 export class CommissionComponent {
   commissions: commission[];
+  ngModelbeginDate = new Date();
+  ngModelendDate = new Date();
   settings = {
     actions: { add: false, edit: false, delete: false, },
     hideSubHeader: true,
@@ -50,10 +53,9 @@ export class CommissionComponent {
   constructor(private service: commissionTableService) {
   }
 
-  getCommissions(tRA: string,
-    beginDate: string,
-    endDate: string): void {
-    this.service.getData(tRA,beginDate,endDate)
+  getCommissions(tRA: string): void {
+    console.log(this.ngModelbeginDate);
+    this.service.getData(tRA,this.ngModelbeginDate.toISOString(),this.ngModelendDate.toISOString())
     .subscribe( commissions => { 
       // this.commissions= commissions;
       // console.log(this.commissions);

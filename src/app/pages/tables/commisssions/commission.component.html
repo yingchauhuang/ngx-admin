@@ -8,10 +8,17 @@
         <label for="tRA">RA Name or ID: </label>
         <input type="text" #tRA id="tRA">
         <label for="beginDate">Begin Date: </label>
-        <input type="text" #beginDate id="beginDate">
-        <label for="endDate">End Date: </label>
-        <input type="text" #endDate id="endDate">
-        <button (click)="getCommissions(tRA.value,beginDate.value,endDate.value)">
+        <input nbInput
+              placeholder="開始日期"
+              [nbDatepicker]="beginDate" 
+              [(ngModel)]="ngModelbeginDate">
+        <nb-datepicker format="yyyy/MM/dd" #beginDate></nb-datepicker>
+        <input nbInput
+              placeholder="結束日期"
+              [nbDatepicker]="endDate" 
+              [(ngModel)]="ngModelendDate">
+        <nb-datepicker format="yyyy/MM/dd" #endDate></nb-datepicker>
+        <button (click)="getCommissions(tRA.value)">
           Search
         </button>
       </div>
